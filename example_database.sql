@@ -1893,8 +1893,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `role`) VALUES
-(1, 'jakajekbae', 'jaka123', 'admin'),
-(2, 'gugun', 'gugun123', 'admin');
+(1, 'admin', '1234', 'admin');
 
 --
 -- Indeks untuk tabel yang dibuang
