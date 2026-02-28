@@ -1,0 +1,378 @@
+/* =========================================
+           1. LAYOUT & UTILITIES
+           ========================================= */
+body {
+    background-color: #f8f9fa; /* Abu-abu muda */
+}
+
+.navbar {
+    z-index: 1030; /* Standar Bootstrap */
+}
+
+.admin-badge {
+    font-size: 0.9rem;
+    margin-right: 10px;
+}
+
+/* Loading Spinner */
+.search-loading-container {
+    display: none;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+.small-loader {
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #0d6efd;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+/* =========================================
+   2. DROPDOWN MENU (Titik Tiga)
+   ========================================= */
+.dropdown-menu-custom {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%; /* Muncul tepat di bawah tombol */
+    background: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    z-index: 1040; /* Di atas Card */
+    border-radius: 0.375rem;
+    min-width: 170px;
+    padding: 5px 0;
+    margin-top: 5px;
+}
+.dropdown-menu-custom button {
+    display: block;
+    width: 100%;
+    padding: 8px 16px;
+    text-align: left;
+    background: none;
+    border: none;
+    font-size: 0.9rem;
+    color: #333;
+    transition: background 0.2s;
+}
+.dropdown-menu-custom button:hover {
+    background-color: #f1f3f5;
+    color: #000;
+}
+
+/* =========================================
+   3. MODAL & OVERLAY (Fixed Logic)
+   ========================================= */
+
+/* Overlay Hitam (Latar Belakang Gelap) */
+#modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6); /* Lebih gelap sedikit */
+    z-index: 1050; /* Di ATAS Navbar */
+    backdrop-filter: blur(2px);
+}
+
+/* Custom Modal Wrapper (Pengganti class .modal Bootstrap biar gak bentrok) */
+.custom-modal {
+    display: none; /* Hidden by default */
+    position: fixed; 
+    z-index: 1060; /* Paling ATAS (di atas overlay) */
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow-x: hidden;
+    overflow-y: auto;
+    outline: 0;
+}
+
+/* Agar modal berada di tengah layar */
+.custom-modal-dialog {
+    position: relative;
+    width: auto;
+    margin: 1.75rem auto;
+    max-width: 500px; /* Ukuran standar modal */
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    min-height: calc(100% - 3.5rem);
+}
+
+.custom-modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,.5);
+    outline: 0;
+}
+
+.custom-modal-header {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1rem;
+    border-bottom: 1px solid #dee2e6;
+    border-top-left-radius: calc(0.5rem - 1px);
+    border-top-right-radius: calc(0.5rem - 1px);
+}
+
+.custom-modal-body {
+    position: relative;
+    flex: 1 1 auto;
+    padding: 1rem;
+}
+
+.custom-modal-footer {
+    display: flex;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0.75rem;
+    border-top: 1px solid #dee2e6;
+    border-bottom-right-radius: calc(0.5rem - 1px);
+    border-bottom-left-radius: calc(0.5rem - 1px);
+    gap: 0.5rem;
+}
+
+/* =========================================
+   4. LOGS MODAL SPECIFIC STYLES
+   ========================================= */
+
+/* Logs Modal - Lebar Lebar */
+#logs-modal .custom-modal-dialog {
+    max-width: 800px;
+}
+
+/* Container untuk logs dengan scroll */
+#logs-content {
+    max-height: 500px;
+    overflow-y: auto;
+    padding: 1.5rem !important;
+}
+
+/* Styling untuk setiap item log */
+.log-item {
+    border-left: 3px solid #0d6efd;
+    padding-left: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.log-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+/* Waktu logs */
+.log-time {
+    font-size: 0.85rem;
+    color: #6c757d;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Badge untuk jenis aksi */
+.log-badge {
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-right: 0.5rem;
+}
+
+.badge-insert {
+    background-color: #198754;
+    color: white;
+}
+
+.badge-update {
+    background-color: #ffc107;
+    color: #000;
+}
+
+.badge-delete {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Pesan log */
+.log-message {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-left: 0.5rem;
+    padding-left: 0.5rem;
+    border-left: 2px solid #e9ecef;
+}
+
+.log-message strong {
+    color: #212529;
+}
+
+.log-message code {
+    background-color: #f8f9fa;
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
+    color: #d63384;
+}
+
+/* Scrollbar styling untuk logs */
+#logs-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+#logs-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+#logs-content::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 3px;
+}
+
+#logs-content::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Empty state untuk logs */
+.logs-empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+}
+
+.logs-empty-state i {
+    font-size: 3rem;
+    color: #6c757d;
+    margin-bottom: 1rem;
+}
+
+.logs-empty-state p {
+    color: #6c757d;
+    font-size: 1.1rem;
+}
+
+/* Error state untuk logs */
+.logs-error-state {
+    padding: 2rem;
+    text-align: center;
+}
+
+.logs-error-state .alert {
+    text-align: left;
+}
+
+/* Loading state untuk logs */
+.logs-loading-state {
+    padding: 3rem 1rem;
+    text-align: center;
+}
+
+.logs-loading-state .spinner-border {
+    width: 3rem;
+    height: 3rem;
+}
+
+/* =========================================
+   5. SEARCH RESULTS STYLING
+   ========================================= */
+.search-results-container {
+    margin-top: 1rem;
+}
+
+.search-results-container h5 {
+    color: #495057;
+    font-weight: 600;
+}
+
+/* Pagination untuk search results */
+.ajax-pagination .page-link {
+    cursor: pointer;
+}
+
+.ajax-pagination .page-item.active .page-link {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+/* =========================================
+   6. RESPONSIVE ADJUSTMENTS
+   ========================================= */
+@media (max-width: 768px) {
+    /* Modal lebih kecil di mobile */
+    .custom-modal-dialog {
+        margin: 0.5rem;
+        max-width: calc(100% - 1rem);
+    }
+    
+    /* Logs modal lebih kecil di mobile */
+    #logs-modal .custom-modal-dialog {
+        max-width: calc(100% - 1rem);
+    }
+    
+    #logs-content {
+        max-height: 400px;
+        padding: 1rem !important;
+    }
+    
+    /* Tombol logs di pagination */
+    .pagination + button {
+        margin-top: 0.5rem;
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    /* Log item lebih compact di mobile */
+    .log-item {
+        padding-left: 0.75rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.75rem;
+    }
+    
+    .log-time {
+        flex-wrap: wrap;
+    }
+    
+    .log-message {
+        font-size: 0.9rem;
+        margin-left: 0;
+        padding-left: 0;
+        border-left: none;
+    }
+    
+    /* Modal header lebih compact */
+    .custom-modal-header {
+        padding: 0.75rem;
+    }
+    
+    .custom-modal-header h5 {
+        font-size: 1.1rem;
+    }
+    
+    /* Modal body lebih compact */
+    .custom-modal-body {
+        padding: 0.75rem;
+    }
+}
