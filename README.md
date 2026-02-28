@@ -1,7 +1,7 @@
 ![Screenshot_2026-03-01-05-53-15-260_com android chrome](https://github.com/user-attachments/assets/5d24c013-fb82-4d39-9049-cf62d2b68666)
 ![Screenshot_2026-03-01-05-53-30-768_com android chrome](https://github.com/user-attachments/assets/a2b97f91-50ad-41f8-bd2f-571c82c8a07f)
-username:admin
-password:1234
+-username:admin
+-password:1234
 ---
 
 # 📦 Manajemen Barang
